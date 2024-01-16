@@ -1,5 +1,6 @@
 from collections import deque
 
+
 def solve(maze):
     start = maze.start
     end = maze.end
@@ -26,16 +27,16 @@ def solve(maze):
             break
 
         for n in current.Neighbours:
-            if n != None:
+            if n is not None:
                 npos = n.Position[0] * width + n.Position[1]
-                if visited[npos] == False:
+                if not visited[npos]:
                     queue.appendleft(n)
                     visited[npos] = True
                     prev[npos] = current
 
     path = deque()
     current = end
-    while (current != None):
+    while current is not None:
         path.appendleft(current)
         current = prev[current.Position[0] * width + current.Position[1]]
 

@@ -12,25 +12,23 @@ def solve(maze):
     end = maze.end
     endpos = end.Position
 
-    # Visited holds true/false on whether a node has been seen already. Used to stop us returning to nodes multiple times
+    # Visited holds true/false on whether a node has been seen already. Used to stop us returning to nodes multiple
+    # times
     visited = [False] * total
 
     # Previous holds a link to the previous node in the path. Used at the end for reconstructing the route
     prev = [None] * total
 
-    # Distances holds the distance to any node taking the best known path so far. Better paths replace worse ones as we find them.
-    # We start with all distances at infinity
+    # Distances holds the distance to any node taking the best known path so far. Better paths replace worse ones as
+    # we find them. We start with all distances at infinity .
     infinity = float("inf")
     distances = [infinity] * total
 
-    # The priority queue. There are multiple implementations in priority_queue.py
-    # unvisited = FibHeap()
-    # unvisited = HeapPQ()
+    # The priority queue.
     unvisited = FibPQ()
-    #unvisited = QueuePQ()
 
-    # This index holds all priority queue nodes as they are created. We use this to decrease the key of a specific node when a shorter path is found.
-    # This isn't hugely memory efficient, but likely to be faster than a dictionary or similar.
+    # This index holds all priority queue nodes as they are created. We use this to decrease the key of a specific
+    # node when a shorter path is found.
     nodeindex = [None] * total
 
     # To begin, we set the distance to the start to zero (we're there) and add it into the unvisited queue
@@ -95,12 +93,13 @@ def solve(maze):
         visited[uposindex] = True
 
 
-    # We want to reconstruct the path. We start at end, and then go prev[end] and follow all the prev[] links until we're back at the start
+    # We want to reconstruct the path. We start at end, and then go prev[end] and follow all the prev[] links until
+    # we're back at the start
     from collections import deque
 
     path = deque()
     current = end
-    while (current != None):
+    while current != None:
         path.appendleft(current)
         current = prev[current.Position[0] * width + current.Position[1]]
 

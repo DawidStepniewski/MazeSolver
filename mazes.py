@@ -1,3 +1,6 @@
+import numpy as np
+
+
 class Maze:
     class Node:
         def __init__(self, position):
@@ -9,6 +12,7 @@ class Maze:
         width = im.size[0]
         height = im.size[1]
         data = list(im.getdata(0))
+        self.maze_array = np.array(im)
 
         self.start = None
         self.end = None
@@ -26,8 +30,6 @@ class Maze:
                 break
 
         for y in range (1, height - 1):
-            #print ("row", str(y)) # Uncomment this line to keep a track of row progress
-
             rowoffset = y * width
             rowaboveoffset = rowoffset - width
             rowbelowoffset = rowoffset + width
@@ -110,3 +112,6 @@ class Maze:
         self.count = count
         self.width = width
         self.height = height
+
+    def get_array_representation(self):
+        return self.maze_array

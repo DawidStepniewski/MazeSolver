@@ -3,7 +3,6 @@ class FibHeap:
     #### Node Class ####
     class Node:
         def __init__(self, key, value):
-            # key value degree mark / prev next child parent
             self.key = key
             self.value = value
             self.degree = 0
@@ -54,7 +53,6 @@ class FibHeap:
             node.parent = None
             node.mark = False
             self.degree -= 1
-    #### End of Node Class ####
 
     def __init__ (self):
         self.minnode = None
